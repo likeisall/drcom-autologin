@@ -1,0 +1,5 @@
+# Windows 项目：统一按 CRLF 检出，避免 LF/CRLF 来回抖动
+* text=auto eol=crlf
+
+# 这些是 GBK 编码，交给 git 别乱转
+*.bat -text
