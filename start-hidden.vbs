@@ -15,11 +15,10 @@ Set fso = CreateObject("Scripting.FileSystemObject")
 baseDir = fso.GetParentFolderName(WScript.ScriptFullName)
 ps1Path = baseDir & "\campus-login.ps1"
 
-' Prefer PowerShell 7 (Store alias), fall back to the versioned path.
+' Prefer PowerShell 7 (Store alias), fall back to the built-in 5.1.
+' NOTE: deliberately NOT hard-coding a versioned WindowsApps path --
+' that path contains a version number and differs on every machine.
 pwshPath = sh.ExpandEnvironmentStrings("%LOCALAPPDATA%") & "\Microsoft\WindowsApps\pwsh.exe"
-If Not fso.FileExists(pwshPath) Then
-    pwshPath = "C:\Program Files\WindowsApps\Microsoft.PowerShell_7.6.6.0_x64__8wekyb3d8bbwe\pwsh.exe"
-End If
 If Not fso.FileExists(pwshPath) Then
     pwshPath = "powershell.exe"
 End If
